@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include "hw1.h"
 
+
 // triangle: weak normal & strong normal
 TEST(triangle_WN, traingle_WN_test) {
 	EXPECT_EQ("Equilateral", triangle(5, 5, 5));
@@ -10,7 +11,7 @@ TEST(triangle_WN, traingle_WN_test) {
 }
 
 // triangle: weak robust
-TEST(triangle_WN, traingle_WN_test) {
+TEST(triangle_WR, traingle_WR_test) {
 	EXPECT_EQ("Value of a is not in the range of permitted values", triangle(-1, 5, 5));
 	EXPECT_EQ("Value of b is not in the range of permitted values", triangle(5, -1, 5));
 	EXPECT_EQ("Value of c is not in the range of permitted values", triangle(5, 5, -1));
@@ -20,7 +21,7 @@ TEST(triangle_WN, traingle_WN_test) {
 }
 
 // triangle: strong robust
-TEST(triangle_WN, traingle_WN_test) {
+TEST(triangle_SR, traingle_SR_test) {
 	EXPECT_EQ("Value of a is not in the range of permitted values", triangle(-1, 5, 5));
 	EXPECT_EQ("Value of b is not in the range of permitted values", triangle(5, -1, 5));
 	EXPECT_EQ("Value of c is not in the range of permitted values", triangle(5, 5, -1));
@@ -39,4 +40,14 @@ TEST(triangle_WN, traingle_WN_test) {
 
 	EXPECT_EQ("Value of a,b,c is not in the range of permitted values", triangle(-1, -1, -1));
 	EXPECT_EQ("Value of a,b,c is not in the range of permitted values", triangle(201, 201, 201));
+}
+
+int main(int argc, char** argv) {
+	testing::InitGoogleTest(&argc, argv);
+
+	RUN_ALL_TESTS();
+
+	system("pause");
+
+	return 0;
 }
