@@ -1,0 +1,186 @@
+        -:    0:Source:/usr/include/c++/5/bits/ptr_traits.h
+        -:    0:Graph:next_date.gcno
+        -:    0:Data:next_date.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// Pointer Traits -*- C++ -*-
+        -:    2:
+        -:    3:// Copyright (C) 2011-2015 Free Software Foundation, Inc.
+        -:    4://
+        -:    5:// This file is part of the GNU ISO C++ Library.  This library is free
+        -:    6:// software; you can redistribute it and/or modify it under the
+        -:    7:// terms of the GNU General Public License as published by the
+        -:    8:// Free Software Foundation; either version 3, or (at your option)
+        -:    9:// any later version.
+        -:   10:
+        -:   11:// This library is distributed in the hope that it will be useful,
+        -:   12:// but WITHOUT ANY WARRANTY; without even the implied warranty of
+        -:   13:// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        -:   14:// GNU General Public License for more details.
+        -:   15:
+        -:   16:// Under Section 7 of GPL version 3, you are granted additional
+        -:   17:// permissions described in the GCC Runtime Library Exception, version
+        -:   18:// 3.1, as published by the Free Software Foundation.
+        -:   19:
+        -:   20:// You should have received a copy of the GNU General Public License and
+        -:   21:// a copy of the GCC Runtime Library Exception along with this program;
+        -:   22:// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+        -:   23:// <http://www.gnu.org/licenses/>.
+        -:   24:
+        -:   25:/** @file bits/ptr_traits.h
+        -:   26: *  This is an internal header file, included by other library headers.
+        -:   27: *  Do not attempt to use it directly. @headername{memory}
+        -:   28: */
+        -:   29:
+        -:   30:#ifndef _PTR_TRAITS_H
+        -:   31:#define _PTR_TRAITS_H 1
+        -:   32:
+        -:   33:#if __cplusplus >= 201103L
+        -:   34:
+        -:   35:#include <type_traits> // For _GLIBCXX_HAS_NESTED_TYPE
+        -:   36:
+        -:   37:namespace std _GLIBCXX_VISIBILITY(default)
+        -:   38:{
+        -:   39:_GLIBCXX_BEGIN_NAMESPACE_VERSION
+        -:   40:
+        -:   41:_GLIBCXX_HAS_NESTED_TYPE(element_type)
+        -:   42:_GLIBCXX_HAS_NESTED_TYPE(difference_type)
+        -:   43:
+        -:   44:  template<typename _Tp, bool = __has_element_type<_Tp>::value>
+        -:   45:    struct __ptrtr_elt_type;
+        -:   46:
+        -:   47:  template<typename _Tp>
+        -:   48:    struct __ptrtr_elt_type<_Tp, true>
+        -:   49:    {
+        -:   50:      typedef typename _Tp::element_type __type;
+        -:   51:    };
+        -:   52:
+        -:   53:  template<template<typename, typename...> class _SomePtr, typename _Tp,
+        -:   54:            typename... _Args>
+        -:   55:    struct __ptrtr_elt_type<_SomePtr<_Tp, _Args...>, false>
+        -:   56:    {
+        -:   57:      typedef _Tp __type;
+        -:   58:    };
+        -:   59:
+        -:   60:  template<typename _Tp, bool = __has_difference_type<_Tp>::value>
+        -:   61:    struct __ptrtr_diff_type
+        -:   62:    {
+        -:   63:      typedef typename _Tp::difference_type __type;
+        -:   64:    };
+        -:   65:
+        -:   66:  template<typename _Tp>
+        -:   67:    struct __ptrtr_diff_type<_Tp, false>
+        -:   68:    {
+        -:   69:      typedef ptrdiff_t __type;
+        -:   70:    };
+        -:   71:
+        -:   72:  template<typename _Ptr, typename _Up>
+        -:   73:    class __ptrtr_rebind_helper
+        -:   74:    {
+        -:   75:      template<typename _Ptr2, typename _Up2>
+        -:   76:	static constexpr true_type
+        -:   77:	_S_chk(typename _Ptr2::template rebind<_Up2>*);
+        -:   78:
+        -:   79:      template<typename, typename>
+        -:   80:	static constexpr false_type
+        -:   81:	_S_chk(...);
+        -:   82:
+        -:   83:    public:
+        -:   84:      using __type = decltype(_S_chk<_Ptr, _Up>(nullptr));
+        -:   85:    };
+        -:   86:
+        -:   87:  template<typename _Tp, typename _Up,
+        -:   88:           bool = __ptrtr_rebind_helper<_Tp, _Up>::__type::value>
+        -:   89:    struct __ptrtr_rebind;
+        -:   90:
+        -:   91:  template<typename _Tp, typename _Up>
+        -:   92:    struct __ptrtr_rebind<_Tp, _Up, true>
+        -:   93:    {
+        -:   94:      typedef typename _Tp::template rebind<_Up> __type;
+        -:   95:    };
+        -:   96:
+        -:   97:  template<template<typename, typename...> class _SomePtr, typename _Up,
+        -:   98:            typename _Tp, typename... _Args>
+        -:   99:    struct __ptrtr_rebind<_SomePtr<_Tp, _Args...>, _Up, false>
+        -:  100:    {
+        -:  101:      typedef _SomePtr<_Up, _Args...> __type;
+        -:  102:    };
+        -:  103:
+        -:  104:  template<typename _Tp, typename = typename remove_cv<_Tp>::type>
+        -:  105:    struct __ptrtr_not_void
+        -:  106:    {
+        -:  107:      typedef _Tp __type;
+        -:  108:    };
+        -:  109:
+        -:  110:  template<typename _Tp>
+        -:  111:    struct __ptrtr_not_void<_Tp, void>
+        -:  112:    {
+        -:  113:      struct __type { };
+        -:  114:    };
+        -:  115:
+        -:  116:  template<typename _Ptr>
+        -:  117:    class __ptrtr_pointer_to
+        -:  118:    {
+        -:  119:      typedef typename __ptrtr_elt_type<_Ptr>::__type   __orig_type;
+        -:  120:      typedef typename __ptrtr_not_void<__orig_type>::__type __element_type;
+        -:  121:
+        -:  122:    public:
+        -:  123:      static _Ptr pointer_to(__element_type& __e)
+        -:  124:      { return _Ptr::pointer_to(__e); }
+        -:  125:    };
+        -:  126:
+        -:  127:  /**
+        -:  128:   * @brief  Uniform interface to all pointer-like types
+        -:  129:   * @ingroup pointer_abstractions
+        -:  130:  */
+        -:  131:  template<typename _Ptr>
+        -:  132:    struct pointer_traits : __ptrtr_pointer_to<_Ptr>
+        -:  133:    {
+        -:  134:      /// The pointer type
+        -:  135:      typedef _Ptr                                      pointer;
+        -:  136:      /// The type pointed to
+        -:  137:      typedef typename __ptrtr_elt_type<_Ptr>::__type   element_type;
+        -:  138:      /// Type used to represent the difference between two pointers
+        -:  139:      typedef typename __ptrtr_diff_type<_Ptr>::__type  difference_type;
+        -:  140:
+        -:  141:      template<typename _Up>
+        -:  142:        using rebind = typename __ptrtr_rebind<_Ptr, _Up>::__type;
+        -:  143:    };
+        -:  144:
+        -:  145:  /**
+        -:  146:   * @brief  Partial specialization for built-in pointers.
+        -:  147:   * @ingroup pointer_abstractions
+        -:  148:  */
+        -:  149:  template<typename _Tp>
+        -:  150:    struct pointer_traits<_Tp*>
+        -:  151:    {
+        -:  152:      /// The pointer type
+        -:  153:      typedef _Tp* pointer;
+        -:  154:      /// The type pointed to
+        -:  155:      typedef _Tp  element_type;
+        -:  156:      /// Type used to represent the difference between two pointers
+        -:  157:      typedef ptrdiff_t difference_type;
+        -:  158:
+        -:  159:      template<typename _Up>
+        -:  160:        using rebind = _Up*;
+        -:  161:
+        -:  162:      /**
+        -:  163:       *  @brief  Obtain a pointer to an object
+        -:  164:       *  @param  __r  A reference to an object of type @c element_type
+        -:  165:       *  @return @c addressof(__r)
+        -:  166:      */
+        -:  167:      static pointer
+function _ZNSt14pointer_traitsIPPNSt8__detail15_Hash_node_baseEE10pointer_toERS2_ called 111 returned 100% blocks executed 100%
+function _ZNSt14pointer_traitsIPNSt8__detail10_Hash_nodeIiLb0EEEE10pointer_toERS2_ called 407 returned 100% blocks executed 100%
+      518:  168:      pointer_to(typename __ptrtr_not_void<element_type>::__type& __r) noexcept
+      518:  169:      { return std::addressof(__r); }
+call    0 returned 100%
+call    1 returned 100%
+        -:  170:    };
+        -:  171:
+        -:  172:_GLIBCXX_END_NAMESPACE_VERSION
+        -:  173:} // namespace std
+        -:  174:
+        -:  175:#endif
+        -:  176:
+        -:  177:#endif
