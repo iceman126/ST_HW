@@ -1,0 +1,156 @@
+        -:    0:Source:triangle.cpp
+        -:    0:Graph:triangle.gcno
+        -:    0:Data:triangle.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "hw1.h"
+        -:    2:
+function _Z8triangleB5cxx11iii called 24 returned 100% blocks executed 78%
+       24:    3:string triangle(int a, int b, int c) {
+        -:    4:	// invalid input
+       48:    5:	vector<char> invalid_var;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 never executed
+       24:    6:	invalid_var.clear();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       24:    7:	if (a < 0 || a > 200)
+branch  0 taken 79% (fallthrough)
+branch  1 taken 21%
+branch  2 taken 26% (fallthrough)
+branch  3 taken 74%
+       10:    8:		invalid_var.push_back('a');
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       24:    9:	if (b < 0 || b > 200)
+branch  0 taken 79% (fallthrough)
+branch  1 taken 21%
+branch  2 taken 26% (fallthrough)
+branch  3 taken 74%
+       10:   10:		invalid_var.push_back('b');
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       24:   11:	if (c < 0 || c > 200)
+branch  0 taken 79% (fallthrough)
+branch  1 taken 21%
+branch  2 taken 26% (fallthrough)
+branch  3 taken 74%
+       10:   12:		invalid_var.push_back('c');
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 never executed
+        -:   13:
+       24:   14:	if (invalid_var.size() > 0) {
+call    0 returned 100%
+branch  1 taken 83% (fallthrough)
+branch  2 taken 17%
+       40:   15:		string error_msg = "Value of ";
+call    0 returned 100%
+call    1 returned 100%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0% (throw)
+call    4 returned 100%
+call    5 returned 100%
+branch  6 taken 100% (fallthrough)
+branch  7 taken 0% (throw)
+call    8 never executed
+       50:   16:		for (int i = 0; i < invalid_var.size(); i++) {
+call    0 returned 100%
+branch  1 taken 60% (fallthrough)
+branch  2 taken 40%
+       30:   17:			error_msg += invalid_var[i];
+call    0 returned 100%
+call    1 returned 100%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0% (throw)
+       30:   18:			if (i != invalid_var.size() - 1)
+call    0 returned 100%
+branch  1 taken 33% (fallthrough)
+branch  2 taken 67%
+       10:   19:				error_msg += ",";
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        -:   20:		}
+       20:   21:		error_msg += " is not in the range of permitted values";
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       20:   22:		return error_msg;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        -:   23:	}
+        -:   24:
+        -:   25:
+        -:   26:	// not a triangle
+        4:   27:	if ((a + b) < c || (b + c) < a || (c + a) < b)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 75% (fallthrough)
+branch  3 taken 25%
+branch  4 taken 0% (fallthrough)
+branch  5 taken 100%
+        1:   28:		return string("Not a triangle");
+call    0 returned 100%
+call    1 returned 100%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0% (throw)
+call    4 returned 100%
+call    5 never executed
+        -:   29:
+        -:   30:	// triangle types
+        3:   31:	if (a == b && b == c) {
+branch  0 taken 67% (fallthrough)
+branch  1 taken 33%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+        1:   32:		return string("Equilateral");
+call    0 returned 100%
+call    1 returned 100%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0% (throw)
+call    4 returned 100%
+call    5 never executed
+        -:   33:	}
+        2:   34:	else if (a == b || b == c || c == a) {
+branch  0 taken 50% (fallthrough)
+branch  1 taken 50%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0%
+branch  4 taken 0% (fallthrough)
+branch  5 taken 100%
+        1:   35:		return string("Isosceles");
+call    0 returned 100%
+call    1 returned 100%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0% (throw)
+call    4 returned 100%
+call    5 never executed
+        -:   36:	}
+        -:   37:	else {
+        1:   38:		return string("Scalene");
+call    0 returned 100%
+call    1 returned 100%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0% (throw)
+call    4 returned 100%
+call    5 never executed
+        -:   39:	}
+function _GLOBAL__sub_I__Z8triangleB5cxx11iii called 1 returned 100% blocks executed 100%
+function _Z41__static_initialization_and_destruction_0ii called 1 returned 100% blocks executed 100%
+        3:   40:}
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0%
+branch  3 taken 100% (fallthrough)
+branch  4 taken 0%
