@@ -1,3 +1,0 @@
-KLEE: Using STP solver backend
-KLEE: ERROR: /home/klee/ST/commission/commission.cpp:30: failed external call: _ZNSspLEPKc
-KLEE: NOTE: now ignoring this error at this location

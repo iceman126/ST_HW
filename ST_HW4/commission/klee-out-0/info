@@ -1,3 +1,0 @@
-klee --libc=uclibc commission.bc
-PID: 343
-Started: 2017-06-11 10:08:28
