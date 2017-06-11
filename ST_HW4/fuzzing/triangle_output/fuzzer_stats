@@ -1,0 +1,27 @@
+start_time        : 1497183625
+last_update       : 1497184552
+fuzzer_pid        : 8349
+cycles_done       : 745
+execs_done        : 5612170
+execs_per_sec     : 6022.54
+paths_total       : 13
+paths_favored     : 9
+paths_found       : 12
+paths_imported    : 0
+max_depth         : 4
+cur_path          : 12
+pending_favs      : 0
+pending_total     : 0
+variable_paths    : 0
+stability         : 100.00%
+bitmap_cvg        : 0.12%
+unique_crashes    : 0
+unique_hangs      : 0
+last_path         : 1497183627
+last_crash        : 0
+last_hang         : 0
+execs_since_crash : 5612170
+exec_timeout      : 20
+afl_banner        : triangle_afl
+afl_version       : 2.42b
+command_line      : afl-2.42b/afl-fuzz -i triangle_input/ -o triangle_output/ ./triangle_afl
