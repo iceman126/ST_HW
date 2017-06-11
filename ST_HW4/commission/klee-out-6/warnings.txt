@@ -1,0 +1,32 @@
+KLEE: WARNING: undefined reference to function: _ZNKSs6lengthEv
+KLEE: WARNING: undefined reference to function: _ZNKSt18basic_stringstreamIcSt11char_traitsIcESaIcEE3strEv
+KLEE: WARNING: undefined reference to function: _ZNSaIcEC1Ev
+KLEE: WARNING: undefined reference to function: _ZNSaIcED1Ev
+KLEE: WARNING: undefined reference to function: _ZNSolsEd
+KLEE: WARNING: undefined reference to function: _ZNSs6insertEmPKc
+KLEE: WARNING: undefined reference to function: _ZNSsC1EOSs
+KLEE: WARNING: undefined reference to function: _ZNSsC1EPKcRKSaIcE
+KLEE: WARNING: undefined reference to function: _ZNSsD1Ev
+KLEE: WARNING: undefined reference to function: _ZNSspLEPKc
+KLEE: WARNING: undefined reference to function: _ZNSt18basic_stringstreamIcSt11char_traitsIcESaIcEEC1ESt13_Ios_Openmode
+KLEE: WARNING: undefined reference to function: _ZNSt18basic_stringstreamIcSt11char_traitsIcESaIcEED1Ev
+KLEE: WARNING: undefined reference to function: _ZNSt8ios_base4InitC1Ev
+KLEE: WARNING: undefined reference to function: _ZNSt8ios_base4InitD1Ev
+KLEE: WARNING: undefined reference to function: __cxa_atexit
+KLEE: WARNING: undefined reference to variable: __dso_handle
+KLEE: WARNING: undefined reference to function: __gxx_personality_v0
+KLEE: WARNING ONCE: calling external: _ZNSt8ios_base4InitC1Ev(27698688)
+KLEE: WARNING ONCE: calling external: __cxa_atexit(26692544, 27698688, 27773088)
+KLEE: WARNING ONCE: calling external: _ZNSaIcEC1Ev(28263456)
+KLEE: WARNING ONCE: calling external: _ZNSsC1EPKcRKSaIcE(28262592, 27703312, 28263456)
+KLEE: WARNING ONCE: calling external: _ZNSaIcED1Ev(28263456)
+KLEE: WARNING ONCE: calling external: _ZNSspLEPKc(28262592, 27703216)
+KLEE: WARNING ONCE: calling external: _ZNKSs6lengthEv(28262592)
+KLEE: WARNING ONCE: calling external: _ZNSsC1EOSs(28257472, 28262592)
+KLEE: WARNING ONCE: calling external: _ZNSsD1Ev(28262592)
+KLEE: WARNING ONCE: silently concretizing (reason: floating point) expression (Add w32 (Add w32 (Mul w32 45
+                            (SExt w32 (ReadLSB w16 0 l)))
+                   (Mul w32 30
+                            (SExt w32 (ReadLSB w16 0 s))))
+          (Mul w32 25
+                   (SExt w32 (ReadLSB w16 0 b)))) to value 100 (/home/klee/ST/commission/commission.cpp:60)

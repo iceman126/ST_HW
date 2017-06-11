@@ -1,0 +1,7 @@
+Error: failed external call: _ZNSspLEPKc
+File: /home/klee/ST/commission/commission.cpp
+Line: 30
+assembly.ll line: 155
+Stack: 
+	#000000155 in _Z10commissioniii (agg.result=28257472, locks, stocks, barrels) at /home/klee/ST/commission/commission.cpp:30
+	#100000362 in main () at /home/klee/ST/commission/commission.cpp:87
